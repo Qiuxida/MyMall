@@ -3,9 +3,10 @@ package com.star.mall.persistence.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.star.mall.base.BaseModel;
 
 @TableName("user")
-public class User {
+public class User extends BaseModel {
     @TableId("id_")
     private String id;
     @TableField("username_")

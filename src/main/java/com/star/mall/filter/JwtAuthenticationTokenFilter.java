@@ -30,7 +30,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String authTokenStart = "Bearer ";
         String username = null;
 
-        if (StringUtils.isEmpty(authToken) && authToken.startsWith(authTokenStart)){
+        if (!StringUtils.isEmpty(authToken) && authToken.startsWith(authTokenStart)){
             authToken = authToken.substring(authTokenStart.length());
             username = jwtTokenHandler.getUsernameByToken(authToken);
         }
