@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface UserManager extends IService<User> {
 
-    List<User> getAll();
+    List<User> getByUsername(String username);
 }

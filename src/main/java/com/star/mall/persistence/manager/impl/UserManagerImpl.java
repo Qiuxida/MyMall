@@ -1,6 +1,5 @@
 package com.star.mall.persistence.manager.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.star.mall.persistence.manager.UserManager;
 import com.star.mall.persistence.mapper.UserMapper;
@@ -13,8 +12,7 @@ import java.util.List;
 public class UserManagerImpl extends ServiceImpl<UserMapper,User> implements UserManager {
 
     @Override
-    public List<User> getAll() {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        return getBaseMapper().selectList(wrapper);
+    public List<User> getByUsername(String username) {
+        return baseMapper.getByUsername(username);
     }
 }

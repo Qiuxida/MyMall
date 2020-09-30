@@ -6,4 +6,8 @@
         <result property="username" column="username_" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="getByUsername" parameterType="java.lang.String" resultMap="User">
+        select * from user where username_ = #{username}
+    </select>
 </mapper>

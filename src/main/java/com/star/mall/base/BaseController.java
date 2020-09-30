@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class BaseController<M extends IService<T>,T extends BaseModel> {
 
     @Autowired
-    M manager;
+    protected M manager;
 
     @GetMapping("/{id}")
     public T get(@PathVariable String id) {
@@ -28,4 +28,5 @@ public class BaseController<M extends IService<T>,T extends BaseModel> {
     public void delete(@PathVariable String id) {
         manager.removeById(id);
     }
+
 }
