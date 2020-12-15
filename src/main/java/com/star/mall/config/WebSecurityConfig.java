@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/auth","/api/v1/user/**","/api/v1/users").permitAll()
+                .antMatchers("/api/v1/auth").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.headers().cacheControl();

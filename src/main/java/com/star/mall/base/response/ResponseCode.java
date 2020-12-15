@@ -2,7 +2,8 @@ package com.star.mall.base.response;
 
 public enum ResponseCode {
     SUCCESS(0,"请求成功"),
-    RUNTIME_ERROR(40001,"运行时错误");
+    RUNTIME_ERROR(40001,"运行时错误"),
+    VALIDATE_ERROR(40002, "认证失败");
 
     private Integer code;
     private String message;
