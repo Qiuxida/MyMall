@@ -7,7 +7,10 @@ public enum Operation {
     GREAT_THAN("GREAT_THAN"),
     LESS_THAN("LESS_THAN"),
     IS_NULL("IS_NULL"),
-    NOT_NULL("NOT_NULL");
+    NOT_NULL("NOT_NULL"),
+    LEFT_LIKE("LEFT_LIKE"),
+    RIGHT_LIKE("RIGHT_LIKE"),
+    LIKE("LIKE");
 
     private String value;
     Operation(String value) {

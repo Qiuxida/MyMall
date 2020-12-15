@@ -4,25 +4,22 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Query<T> implements Serializable {
     private static final long serialVersionUID = -2187346073476283340L;
 
-    private Map<String, List<Param>> query = new HashMap<>();
+    private Map<String, Params> query = new HashMap<>();
 
     private Page<T> page;
 
     private List<Sorter> sorter = new ArrayList<>();
 
-    public Map<String, List<Param>> getQuery() {
+    public Map<String, Params> getQuery() {
         return query;
     }
 
-    public void setQuery(Map<String, List<Param>> query) {
+    public void setQuery(Map<String, Params> query) {
         this.query = query;
     }
 
@@ -45,7 +42,7 @@ public class Query<T> implements Serializable {
     public QueryWrapper<T> convert2Wrapper() {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         query.forEach((key, value) -> {
-            value.forEach(param -> operate(param,wrapper));
+            value.getParams().forEach(param -> operate(param,wrapper));
         });
         sorter.forEach(item -> {
             if (Direction.DESC.equals(item.getDirection())) {
@@ -78,6 +75,15 @@ public class Query<T> implements Serializable {
                 break;
             case GREAT_THAN:
                 wrapper.ge(param.getField(), param.getValue());
+                break;
+            case LEFT_LIKE:
+                wrapper.likeLeft(param.getField(),param.getValue());
+                break;
+            case RIGHT_LIKE:
+                wrapper.likeRight(param.getField(),param.getValue());
+                break;
+            case LIKE:
+                wrapper.like(param.getField(),param.getValue());
                 break;
             default:
                 break;
