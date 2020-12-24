@@ -3,7 +3,7 @@
 <mapper namespace="com.star.mall.persistence.mapper.UserMapper">
     <resultMap id="User" type="com.star.mall.persistence.model.User">
         <id property="id" column="id_" jdbcType="VARCHAR"/>
-        <result property="username" column="username_" jdbcType="VARCHAR"/>
+        <result property="name" column="name_" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
     </resultMap>
 

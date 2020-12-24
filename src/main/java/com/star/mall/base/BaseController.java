@@ -7,26 +7,26 @@ import org.springframework.web.bind.annotation.*;
 public class BaseController<M extends IService<T>,T extends BaseModel> {
 
     @Autowired
-    protected M manager;
+    protected M service;
 
     @GetMapping("/{id}")
     public T get(@PathVariable String id) {
-        return manager.getById(id);
+        return service.getById(id);
     }
 
     @PostMapping("")
     public void create(@RequestBody T t) {
-        manager.save(t);
+        service.save(t);
     }
 
     @PutMapping("")
     public void update(@RequestBody T t) {
-        manager.updateById(t);
+        service.updateById(t);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
-        manager.removeById(id);
+        service.removeById(id);
     }
 
 }

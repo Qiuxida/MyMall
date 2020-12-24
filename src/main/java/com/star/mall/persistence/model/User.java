@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.star.mall.base.BaseModel;
 
-@TableName("user")
+@TableName("uc_user")
 public class User extends BaseModel {
     @TableId("id_")
     private String id;
-    @TableField("username_")
-    private String username;
+    @TableField("name_")
+    private String name;
+    @TableField("account_")
+    private String account;
     @TableField("password_")
     private String password;
 
@@ -22,12 +24,20 @@ public class User extends BaseModel {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

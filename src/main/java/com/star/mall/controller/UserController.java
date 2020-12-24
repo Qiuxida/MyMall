@@ -17,11 +17,11 @@ public class UserController extends BaseController<UserManager,User> {
 
     @GetMapping("/all")
     public List<User> users(){
-        return manager.list();
+        return service.list();
     }
 
     @PostMapping(value = "/query", produces = { MediaType.APPLICATION_JSON_VALUE })
     public IPage userPage(@RequestBody Query query){
-        return manager.page(query.getPage(),query.convert2Wrapper());
+        return service.page(query.getPage(),query.convert2Wrapper());
     }
 }
