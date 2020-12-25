@@ -1,7 +1,6 @@
 package com.star.mall.codegenerator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -15,10 +14,11 @@ public class CodeGenerator {
     private final static String USERNAME = "root";
     private final static String PASSWORD = "root";
 
-    private final static String PACKAGE = "persistence1";
-    private final static String PARENT = "com.star.mall";
-    private final static String TABLE = "uc_user";
+    private final static String PACKAGE = "mall";
+    private final static String PARENT = "com.star";
+    private final static String TABLE = "uc_role";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
+    private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
 
     public static void main(String[] args) {
         // 代码生成器
@@ -30,13 +30,13 @@ public class CodeGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor(AUTHOR);
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        // 实体属性 Swagger2 注解
+//        gc.setSwagger2(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl(URL);
-        // dsc.setSchemaName("public");
         dsc.setDriverName(DRIVER_NAME);
         dsc.setUsername(USERNAME);
         dsc.setPassword(PASSWORD);
@@ -46,6 +46,11 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(PACKAGE);
         pc.setParent(PARENT);
+        pc.setService("persistence.service");
+        pc.setServiceImpl("persistence.service.impl");
+        pc.setEntity("persistence.entity");
+        pc.setMapper("persistence.mapper");
+        pc.setXml(".xml");
         mpg.setPackageInfo(pc);
 
         // 配置模板
@@ -65,14 +70,17 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
+        strategy.setEntityTableFieldAnnotationEnable(true);
+        strategy.setSuperEntityClass(SUPER_MODEL);
         strategy.setRestControllerStyle(true);
         // 公共父类
         strategy.setSuperControllerClass(SUPER_CONTROLLER);
-        // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id");
         strategy.setInclude(TABLE);
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix("uc_");
+        strategy.setLogicDeleteFieldName("deleted");
+
+        strategy.setSuperEntityColumns("create_by_","create_time","update_by_","update_time_", "deleted_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

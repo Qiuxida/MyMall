@@ -1,6 +1,7 @@
 package com.star.mall.base;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.star.mall.base.model.BaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
