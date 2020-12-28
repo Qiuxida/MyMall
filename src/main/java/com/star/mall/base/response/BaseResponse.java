@@ -11,10 +11,25 @@ public class BaseResponse<T> implements Serializable {
     //返回数据
     private T data;
 
-    public BaseResponse(Integer code, String message, T data) {
-        this.code = code;
+    public BaseResponse() {}
+
+    public BaseResponse(ResponseCode responseCode, String message, T data) {
+        this.code = responseCode.getCode();
         this.message = message;
         this.data = data;
+    }
+    public BaseResponse(ResponseCode responseCode, T data) {
+        this.code = responseCode.getCode();
+        this.message = responseCode.getMessage();
+        this.data = data;
+    }
+
+    public static BaseResponse SUCCESS(String message) {
+        return new BaseResponse<>(ResponseCode.SUCCESS, message,null);
+    }
+
+    public static BaseResponse FAIL(String message) {
+        return new BaseResponse<>(ResponseCode.RUNTIME_ERROR, message,null);
     }
 
     public Integer getCode() {

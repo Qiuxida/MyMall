@@ -3,7 +3,10 @@ package com.star.mall.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.star.mall.base.response.BaseResponse;
+import com.star.mall.persistence.entity.Role;
 import com.star.mall.persistence.entity.User;
+import com.star.mall.persistence.service.IRoleService;
 import com.star.mall.persistence.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,15 +25,20 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mall/role")
-public class RoleController extends BaseController {
+public class RoleController extends BaseController<IRoleService, Role> {
 
     @Resource
     IUserService userService;
 
-    @PostMapping("/{roleId}/users")
-    public IPage<User> getUsersByRoleId(@RequestBody IPage page, @PathVariable("roleId") String roleId) {
+    @PostMapping("/{code}/user/page")
+    public IPage<User> getUsersByRoleId(@RequestBody IPage page, @PathVariable("code") String code) {
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("role_id_", roleId);
+        wrapper.eq("ur.code_", code);
         return userService.queryRoleUsers(page,wrapper);
+    }
+
+    @PostMapping("/{code}/users")
+    public void createRoleUsers(@RequestBody List<User> users, @PathVariable("code") String code) {
+        service.saveOrUpdateRoleUsers(users, code);
     }
 }

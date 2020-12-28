@@ -1,10 +1,13 @@
 package com.star.mall.persistence.service.impl;
 
 import com.star.mall.persistence.entity.Role;
+import com.star.mall.persistence.entity.User;
 import com.star.mall.persistence.mapper.RoleMapper;
 import com.star.mall.persistence.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
+    @Override
+    public void saveOrUpdateRoleUsers(List<User> users, String code) {
+
+    }
 }

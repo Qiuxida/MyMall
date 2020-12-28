@@ -10,6 +10,6 @@ public class BaseExceptionAdvice {
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public BaseResponse runtimeException(RuntimeException exception) {
-        return new BaseResponse(ResponseCode.RUNTIME_ERROR.getCode(), exception.getMessage(),null);
+        return new BaseResponse(ResponseCode.RUNTIME_ERROR, exception.getMessage(),null);
     }
 }

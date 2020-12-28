@@ -7,7 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -30,7 +30,7 @@ public class JwtTokenHandler {
         UserDetail userDetail = new UserDetail();
         Claims claims = getClaimsFromToken(token);
         String username = claims.getSubject();
-        userDetail.setUsername(username);
+//        userDetail.setUsername(username);
         return userDetail;
     }
 
@@ -70,16 +70,16 @@ public class JwtTokenHandler {
         return claims;
     }
 
-    public String generateAccessToken(UserDetails userDetails) {
-        Date createDate = new Date();
-        Date expireDate = new Date(createDate.getTime() + expiration * 1000);
-
-        return Jwts
-                .builder()
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date())
-                .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, secret)
-                .compact();
-    }
+//    public String generateAccessToken(UserDetails userDetails) {
+//        Date createDate = new Date();
+//        Date expireDate = new Date(createDate.getTime() + expiration * 1000);
+//
+//        return Jwts
+//                .builder()
+//                .setSubject(userDetails.getUsername())
+//                .setIssuedAt(new Date())
+//                .setExpiration(expireDate)
+//                .signWith(SignatureAlgorithm.HS512, secret)
+//                .compact();
+//    }
 }

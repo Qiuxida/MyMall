@@ -19,10 +19,10 @@ public class AuthController {
 
     @PostMapping("auth")
     public BaseResponse auth(@RequestBody UserDetail userDetail){
-        String token = authService.login(userDetail.getUsername(),userDetail.getPassword());
+        String token = null;
         if (token == null) {
-            return new BaseResponse<String>(ResponseCode.VALIDATE_ERROR.getCode(),"认证失败",null);
+            return new BaseResponse<String>(ResponseCode.VALIDATE_ERROR,"认证失败",null);
         }
-        return new BaseResponse<String>(ResponseCode.SUCCESS.getCode(),"认证成功", token);
+        return new BaseResponse<String>(ResponseCode.SUCCESS,"认证成功", token);
     }
 }

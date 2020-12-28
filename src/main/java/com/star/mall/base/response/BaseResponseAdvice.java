@@ -20,7 +20,7 @@ public class BaseResponseAdvice implements ResponseBodyAdvice {
             if(body instanceof BaseResponse){
                 return body;
             }else{
-                BaseResponse response =new BaseResponse(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(),body);
+                BaseResponse response =new BaseResponse(ResponseCode.SUCCESS, ResponseCode.SUCCESS.getMessage(),body);
                 return response;
             }
         }

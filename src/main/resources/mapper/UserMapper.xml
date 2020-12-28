@@ -4,7 +4,8 @@
 
     <select id="queryRoleUsers" parameterType="java.util.Map" resultType="com.star.mall.persistence.entity.User">
         select * from uc_user uu
-        left join uc_user_role ur on ur.user_id_ = uu.id_
+        left join uc_user_role uur on uur.user_id_ = uu.id_
+        left join uc_role ur.id_ = uur.role_id_
         ${ew.customSqlSegment}
     </select>
 

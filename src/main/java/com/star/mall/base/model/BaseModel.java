@@ -1,6 +1,9 @@
 package com.star.mall.base.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,15 +20,18 @@ import java.time.LocalDateTime;
 public class BaseModel implements Serializable {
     private static final long serialVersionUID = 3699259628684168681L;
 
-    @TableField("create_by_")
-    private String createBy;
-    @TableField("create_time_")
-    private LocalDateTime createTime;
-    @TableField("update_by_")
-    private String updateBy;
-    @TableField("update_time_")
-    private LocalDateTime updateTime;
-    @TableField("deleted_")
+    @TableField(value = "created_by_")
+    private String createdBy;
+    @TableField(value = "created_time_", fill = FieldFill.INSERT)
+    private LocalDateTime createdTime;
+    @TableField("updated_by_")
+    private String updatedBy;
+    @TableField(value = "updated_time_", fill = FieldFill.UPDATE)
+    private LocalDateTime updatedTime;
+    @TableLogic
+    @TableField(value = "deleted_", fill = FieldFill.INSERT)
     private Integer deleted;
-
+    @Version
+    @TableField("version_")
+    private Integer version;
 }

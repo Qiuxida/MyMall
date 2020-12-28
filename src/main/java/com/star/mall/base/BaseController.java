@@ -5,7 +5,9 @@ import com.star.mall.base.model.BaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-public class BaseController<M extends IService<T>,T extends BaseModel> {
+import javax.annotation.Resource;
+
+public class BaseController<M extends IService<T>,T> {
 
     @Autowired
     protected M service;

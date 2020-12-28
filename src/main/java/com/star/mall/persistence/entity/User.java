@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("uc_user")
-public class User implements Serializable {
+public class User extends BaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,8 +36,5 @@ public class User implements Serializable {
 
     @TableField("password_")
     private String password;
-
-    @TableField("deleted_")
-    private Short deleted;
 
 }
