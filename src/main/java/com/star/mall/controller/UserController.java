@@ -12,7 +12,7 @@ import com.star.mall.base.BaseController;
  *  用户
  * </p>
  *
- * @author 邱喜达
+ * @author qiuxd
  * @since 2020-12-25
  */
 @RestController

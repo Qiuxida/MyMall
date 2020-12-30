@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/**
+ * 自动插入更新数据库字段
+ * @author qiuxd
+ */
 @Component
 public class MetaHandler implements MetaObjectHandler {
 

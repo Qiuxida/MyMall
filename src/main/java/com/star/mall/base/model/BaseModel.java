@@ -1,9 +1,6 @@
 package com.star.mall.base.model;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,9 +26,9 @@ public class BaseModel implements Serializable {
     @TableField(value = "updated_time_", fill = FieldFill.UPDATE)
     private LocalDateTime updatedTime;
     @TableLogic
-    @TableField(value = "deleted_", fill = FieldFill.INSERT)
+    @TableField(value = "deleted_", fill = FieldFill.INSERT, select = false)
     private Integer deleted;
     @Version
-    @TableField("version_")
+    @TableField(value = "version_", fill = FieldFill.INSERT)
     private Integer version;
 }

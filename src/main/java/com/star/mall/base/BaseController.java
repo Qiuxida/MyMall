@@ -1,12 +1,13 @@
 package com.star.mall.base;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.star.mall.base.model.BaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-
+/**
+ * 基础controller，添加默认接口
+ * @author qiuxd
+ */
 public class BaseController<M extends IService<T>,T> {
 
     @Autowired
@@ -19,12 +20,16 @@ public class BaseController<M extends IService<T>,T> {
 
     @PostMapping("")
     public void create(@RequestBody T t) {
-        service.save(t);
+        if (service.save(t)){
+            throw new RuntimeException("创建失败");
+        }
     }
 
     @PutMapping("")
     public void update(@RequestBody T t) {
-        service.updateById(t);
+        if (!service.updateById(t)) {
+            throw new RuntimeException("更新失败");
+        }
     }
 
     @DeleteMapping("/{id}")
