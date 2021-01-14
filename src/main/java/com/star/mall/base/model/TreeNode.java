@@ -9,12 +9,14 @@ import java.util.List;
 @EqualsAndHashCode
 public class TreeNode implements Tree{
 
-    @ConvertProperty(field = "id")
+    @ConvertProperty(field = "id1")
     private String id;
     @ConvertProperty(field = "parentId")
     private String parentId;
     @ConvertProperty(field = "name")
     private String name;
+    @ConvertProperty(field = "id")
+    private Integer integer;
 
     public void setId(String id) {
         this.id = id;

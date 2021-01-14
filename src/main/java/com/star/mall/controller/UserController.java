@@ -2,6 +2,7 @@ package com.star.mall.controller;
 
 import com.star.mall.persistence.entity.User;
 import com.star.mall.persistence.service.IUserService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.star.mall.base.BaseController;
  */
 @RestController
 @RequestMapping("/mall/user")
+@Api("用户管理")
 public class UserController extends BaseController<IUserService, User> {
 
 }
