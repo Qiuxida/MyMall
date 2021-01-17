@@ -11,5 +11,4 @@ public @interface OperationLog {
     String name() default "";
 
     String type();
-
 }

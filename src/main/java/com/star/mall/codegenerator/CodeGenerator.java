@@ -9,14 +9,14 @@ public class CodeGenerator {
 
     private final static String AUTHOR = "邱喜达";
 
-    private final static String URL = "jdbc:mysql://localhost:3306/mall?characterEncoding=UTF-8&serverTimezone=GMT%2B8";
+    private final static String URL = "jdbc:mysql://8.135.0.233:3306/mall?characterEncoding=UTF-8&serverTimezone=GMT%2B8";
     private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private final static String USERNAME = "root";
-    private final static String PASSWORD = "root";
+    private final static String PASSWORD = "Abc123";
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "uc_role";
+    private final static String TABLE = "uc_org";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
 
