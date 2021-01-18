@@ -14,8 +14,13 @@ public class CustomIdGenerator implements IdentifierGenerator {
 
     @Override
     public Long nextId(Object entity) {
-        Snowflake snowflake = IdUtil.getSnowflake(workerId,datacenterId);
+        Snowflake snowflake = IdUtil.getSnowflake(workerId, datacenterId);
         return snowflake.nextId();
+    }
+
+    public String nextIdStr() {
+        Snowflake snowflake = IdUtil.getSnowflake(workerId, datacenterId);
+        return snowflake.nextIdStr();
     }
 
 }

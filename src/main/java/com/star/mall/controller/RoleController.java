@@ -3,6 +3,7 @@ package com.star.mall.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.star.mall.base.response.BaseResponse;
 import com.star.mall.persistence.entity.Role;
 import com.star.mall.persistence.entity.User;
@@ -38,7 +39,8 @@ public class RoleController extends BaseController<IRoleService, Role> {
     }
 
     @PostMapping("/{code}/users")
-    public void createRoleUsers(@RequestBody List<User> users, @PathVariable("code") String code) {
+    public BaseResponse createRoleUsers(@RequestBody List<User> users, @PathVariable("code") String code) {
         service.saveOrUpdateRoleUsers(users, code);
+        return BaseResponse.SUCCESS("保存成功");
     }
 }

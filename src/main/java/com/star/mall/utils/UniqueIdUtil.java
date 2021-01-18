@@ -1,20 +1,20 @@
 package com.star.mall.utils;
 
-import cn.hutool.core.util.IdUtil;
-import org.springframework.beans.factory.annotation.Value;
+import com.star.mall.generator.CustomIdGenerator;
 
 public class UniqueIdUtil {
 
-    @Value("${system.id.workerId:1}")
-    private static Long workerId;
-    @Value("${system.id.datacenterId:1}")
-    private static Long datacenterId;
+    private static CustomIdGenerator customIdGenerator;
+
+    static {
+        customIdGenerator = ApplicationContextUtil.getBean(CustomIdGenerator.class);
+    }
 
     public static final String getSid() {
-        return IdUtil.getSnowflake(workerId, datacenterId).nextIdStr();
+        return customIdGenerator.nextIdStr();
     }
 
     public static final Long getId() {
-        return IdUtil.getSnowflake(workerId, datacenterId).nextId();
+        return customIdGenerator.nextId(null);
     }
 }

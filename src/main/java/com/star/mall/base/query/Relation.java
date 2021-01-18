@@ -5,6 +5,7 @@ public enum Relation {
     OR("OR");
 
     private String value;
+
     Relation(String value) {
         this.value = value;
     }

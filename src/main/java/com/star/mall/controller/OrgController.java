@@ -1,13 +1,11 @@
 package com.star.mall.controller;
 
 
+import com.star.mall.base.response.BaseResponse;
 import com.star.mall.persistence.entity.Org;
 import com.star.mall.persistence.service.IOrgService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.star.mall.base.BaseController;
 
 import java.util.List;
@@ -27,5 +25,11 @@ public class OrgController extends BaseController<IOrgService, Org> {
     @GetMapping("/tree/{orgId}")
     public List<Org> getOrgTree(@PathVariable String orgId) throws Exception {
         return service.getOrgTree(orgId);
+    }
+
+    @PostMapping("/parent")
+    public BaseResponse addByParentId(@RequestBody Org org) throws Exception {
+        service.addByParentId(org);
+        return BaseResponse.SUCCESS("保存成功");
     }
 }

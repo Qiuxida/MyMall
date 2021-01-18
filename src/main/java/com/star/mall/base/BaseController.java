@@ -1,6 +1,8 @@
 package com.star.mall.base;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.star.mall.base.query.Query;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,12 @@ public class BaseController<M extends IService<T>,T> {
     @ApiOperation(value = "根据ID删除实体", httpMethod = "GET", notes = "根据ID删除实体")
     public void delete(@PathVariable String id) {
         service.removeById(id);
+    }
+
+    @PostMapping("/page")
+    @ApiOperation(value = "根据分页条件获取实体列表", httpMethod = "POST", notes = "根据分页条件获取实体列表")
+    public Page<T> page(@RequestBody Query query) {
+        return service.page(query.getPage(), query.convert2Wrapper());
     }
 
 }

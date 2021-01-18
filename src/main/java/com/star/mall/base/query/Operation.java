@@ -13,6 +13,7 @@ public enum Operation {
     LIKE("LIKE");
 
     private String value;
+
     Operation(String value) {
         this.value = value;
     }

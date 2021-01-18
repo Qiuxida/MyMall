@@ -5,6 +5,7 @@ public enum  Direction {
     DESC("DESC");
 
     private String value;
+
     Direction(String value) {
         this.value = value;
     }

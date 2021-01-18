@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.star.mall.config")
+@ComponentScan({"com.star.mall.config", "com.star.mall.*"})
 @MapperScan("com.star.mall.persistence.mapper")
 public class MallApplication {
 

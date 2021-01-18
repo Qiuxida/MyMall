@@ -62,6 +62,7 @@ public class Org extends BaseModel implements Tree {
     @TableField("PATH_")
     private String path;
 
+    @TableField(exist = false)
     private List<Org> children;
 
     @Override

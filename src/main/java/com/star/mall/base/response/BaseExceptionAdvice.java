@@ -10,6 +10,7 @@ public class BaseExceptionAdvice {
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public BaseResponse runtimeException(RuntimeException exception) {
+        exception.printStackTrace();
         return new BaseResponse(ResponseCode.RUNTIME_ERROR, exception.getMessage(),null);
     }
 }

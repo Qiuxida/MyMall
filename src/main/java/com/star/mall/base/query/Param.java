@@ -1,7 +1,11 @@
 package com.star.mall.base.query;
 
-import java.io.Serializable;
+import lombok.Data;
 
+import java.io.Serializable;
+import java.util.List;
+
+@Data
 public class Param implements Serializable {
     private static final long serialVersionUID = -6836367180195136378L;
 
@@ -13,36 +17,7 @@ public class Param implements Serializable {
     private Operation operation;
     //联系
     private Relation relation;
+    //子级参数
+    private List<Param> params;
 
-    public String getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
-    public Relation getRelation() {
-        return relation;
-    }
-
-    public void setRelation(Relation relation) {
-        this.relation = relation;
-    }
 }

@@ -1,49 +1,29 @@
 package com.star.mall.base.query;
 
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.star.mall.utils.BeanUtil;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.*;
 
+@Data
 public class Query<T> implements Serializable {
     private static final long serialVersionUID = -2187346073476283340L;
 
-    private Map<String, Params> query = new HashMap<>();
+    private List<Param> query;
 
     private Page<T> page;
 
     private List<Sorter> sorter = new ArrayList<>();
 
-    public Map<String, Params> getQuery() {
-        return query;
-    }
-
-    public void setQuery(Map<String, Params> query) {
-        this.query = query;
-    }
-
-    public Page<T> getPage() {
-        return page;
-    }
-
-    public void setPage(Page<T> page) {
-        this.page = page;
-    }
-
-    public List<Sorter> getSorter() {
-        return sorter;
-    }
-
-    public void setSorter(List<Sorter> sorter) {
-        this.sorter = sorter;
-    }
-
     public QueryWrapper<T> convert2Wrapper() {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
-        query.forEach((key, value) -> {
-            value.getParams().forEach(param -> operate(param,wrapper));
-        });
+        convertParam(query, wrapper);
+
         sorter.forEach(item -> {
             if (Direction.DESC.equals(item.getDirection())) {
                 wrapper.orderByDesc(item.getField());
@@ -54,6 +34,25 @@ public class Query<T> implements Serializable {
             }
         });
         return wrapper;
+    }
+
+    public void convertParam(List<Param> params, QueryWrapper<T> wrapper) {
+        params.forEach(param -> {
+            if (ArrayUtil.isNotEmpty(param.getParams())) {
+                if (Relation.AND.equals(param.getRelation())) {
+                    wrapper.and(item -> {
+                        convertParam(param.getParams(), item);
+                    });
+                }else {
+                    wrapper.or(item -> {
+                        convertParam(param.getParams(), item);
+                    });
+                    wrapper.or();
+                }
+            }else {
+                operate(param, wrapper);
+            }
+        });
     }
 
     public void operate(Param param, QueryWrapper<T> wrapper) {
@@ -88,7 +87,7 @@ public class Query<T> implements Serializable {
             default:
                 break;
         }
-        if (param.getRelation().equals(Relation.OR)) {
+        if (ObjectUtil.isNotEmpty(param.getRelation()) && param.getRelation().equals(Relation.OR)) {
             wrapper.or();
         }
     }
