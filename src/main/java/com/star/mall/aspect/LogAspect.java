@@ -1,9 +1,7 @@
 package com.star.mall.aspect;
 
-import cn.hutool.core.util.ObjectUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
