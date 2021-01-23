@@ -5,6 +5,11 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 分页查询参数
+ * @author StarQ
+ * @since 2021-01-23
+ */
 @Data
 public class Param implements Serializable {
     private static final long serialVersionUID = -6836367180195136378L;

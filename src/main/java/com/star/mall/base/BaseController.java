@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 基础controller，添加默认接口
- * @author qiuxd
+ * @author StarQ
+ * @since 2021-01-23
  */
 public class BaseController<M extends IService<T>,T> {
 

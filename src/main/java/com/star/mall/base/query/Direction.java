@@ -1,7 +1,14 @@
 package com.star.mall.base.query;
 
-public enum  Direction {
+/**
+ * 排序
+ * @author StarQ
+ * @since 2021-01-23
+ */
+public enum Direction {
+
     ASC("ASC"),
+
     DESC("DESC");
 
     private String value;

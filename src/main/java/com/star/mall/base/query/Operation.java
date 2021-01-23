@@ -1,5 +1,10 @@
 package com.star.mall.base.query;
 
+/**
+ * 运算符
+ * @author StarQ
+ * @since 2021-01-23
+ */
 public enum Operation {
 
     EQUAL("EQUAL"),

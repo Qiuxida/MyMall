@@ -16,6 +16,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
+/**
+ * 日志切面实现类
+ * @author StarQ
+ * @since 2021-01-23
+ */
 @Aspect
 @Component
 @Log4j2

@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
  * @since 2020-12-25
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @TableName("uc_user")
 public class User extends BaseModel implements Serializable {
 

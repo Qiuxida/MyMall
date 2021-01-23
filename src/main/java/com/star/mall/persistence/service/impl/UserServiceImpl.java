@@ -1,8 +1,7 @@
 package com.star.mall.persistence.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.star.mall.base.query.Query;
 import com.star.mall.persistence.entity.User;
 import com.star.mall.persistence.mapper.UserMapper;
 import com.star.mall.persistence.service.IUserService;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public Page<User> queryRoleUsers(IPage page, Wrapper wrapper) {
-        return baseMapper.queryRoleUsers(page,wrapper);
+    public Page<User> queryRoleUsers(Query query) {
+        return baseMapper.queryRoleUsers(query.getPage(), query.toWrapper());
     }
 }

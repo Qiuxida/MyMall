@@ -1,9 +1,7 @@
 package com.star.mall.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fasterxml.jackson.databind.ser.Serializers;
+import com.star.mall.base.query.Query;
 import com.star.mall.base.response.BaseResponse;
 import com.star.mall.persistence.entity.Role;
 import com.star.mall.persistence.entity.User;
@@ -31,11 +29,9 @@ public class RoleController extends BaseController<IRoleService, Role> {
     @Resource
     IUserService userService;
 
-    @PostMapping("/{code}/user/page")
-    public IPage<User> getUsersByRoleId(@RequestBody IPage page, @PathVariable("code") String code) {
-        QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("ur.code_", code);
-        return userService.queryRoleUsers(page,wrapper);
+    @PostMapping("/user/page")
+    public IPage<User> getUsersByRoleId(@RequestBody Query query) {
+        return userService.queryRoleUsers(query);
     }
 
     @PostMapping("/{code}/users")

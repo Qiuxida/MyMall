@@ -10,6 +10,12 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * 查询参数
+ * @param <T>
+ * @author StarQ
+ * @since 2021-01-23
+ */
 @Data
 public class Query<T> implements Serializable {
     private static final long serialVersionUID = -2187346073476283340L;
@@ -20,7 +26,7 @@ public class Query<T> implements Serializable {
 
     private List<Sorter> sorter = new ArrayList<>();
 
-    public QueryWrapper<T> convert2Wrapper() {
+    public QueryWrapper<T> toWrapper() {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         convertParam(query, wrapper);
 

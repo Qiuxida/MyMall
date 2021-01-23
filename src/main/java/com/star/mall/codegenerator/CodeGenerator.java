@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 public class CodeGenerator {
 
-    private final static String AUTHOR = "邱喜达";
+    private final static String AUTHOR = "StarQ";
 
     private final static String URL = "jdbc:mysql://8.135.0.233:3306/mall?characterEncoding=UTF-8&serverTimezone=GMT%2B8";
     private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -16,7 +16,7 @@ public class CodeGenerator {
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "uc_org";
+    private final static String TABLE = "uc_org_user";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
 

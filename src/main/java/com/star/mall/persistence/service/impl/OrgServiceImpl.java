@@ -4,6 +4,8 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.star.mall.base.query.Query;
 import com.star.mall.persistence.entity.Org;
 import com.star.mall.persistence.mapper.OrgMapper;
 import com.star.mall.persistence.service.IOrgService;
@@ -49,6 +51,11 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements IOrgS
         }else {
             throw new RuntimeException("无上级组织");
         }
+    }
+
+    @Override
+    public IPage queryOrgUsers(Query query) {
+        return null;
     }
 
 }

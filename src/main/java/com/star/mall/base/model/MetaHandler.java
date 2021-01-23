@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 
 /**
  * 自动插入更新数据库字段
- * @author qiuxd
+ * @author StarQ
+ * @since 2021-01-23
  */
 @Component
 public class MetaHandler implements MetaObjectHandler {

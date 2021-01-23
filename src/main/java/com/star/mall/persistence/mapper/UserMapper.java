@@ -17,5 +17,9 @@ import org.apache.ibatis.annotations.Param;
  * @since 2020-12-25
  */
 public interface UserMapper extends BaseMapper<User> {
+
     Page<User> queryRoleUsers(IPage page, @Param(Constants.WRAPPER) Wrapper wrapper);
+
+    Page<User> queryOrgUsers(IPage page, @Param(Constants.WRAPPER) Wrapper wrapper);
+
 }

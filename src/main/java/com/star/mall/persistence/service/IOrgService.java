@@ -1,5 +1,7 @@
 package com.star.mall.persistence.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.star.mall.base.query.Query;
 import com.star.mall.persistence.entity.Org;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -18,4 +20,6 @@ public interface IOrgService extends IService<Org> {
     List<Org> getOrgTree(String orgId);
 
     void addByParentId(Org org);
+
+    IPage queryOrgUsers(Query query);
 }
