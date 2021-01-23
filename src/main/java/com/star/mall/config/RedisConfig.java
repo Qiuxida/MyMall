@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
@@ -17,14 +18,15 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
-    public CacheManager cacheManager() {
-        RedisCacheManager cacheManager = RedisCacheManager.builder().build();
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        RedisCacheManager cacheManager = RedisCacheManager.create(factory);
         return cacheManager;
     }
 
     @Bean
-    public RedisTemplate redisTemplate() {
+    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
