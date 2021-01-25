@@ -16,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
     IPage<User> queryRoleUsers(Query query);
+
+    IPage<User> queryOrgUsers(Query query);
 }

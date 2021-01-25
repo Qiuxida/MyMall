@@ -1,5 +1,6 @@
 package com.star.mall.persistence.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.star.mall.base.query.Query;
 import com.star.mall.persistence.entity.User;
@@ -22,5 +23,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Page<User> queryRoleUsers(Query query) {
         return baseMapper.queryRoleUsers(query.getPage(), query.toWrapper());
+    }
+
+    @Override
+    public IPage<User> queryOrgUsers(Query query) {
+        return baseMapper.queryOrgUsers(query.getPage(), query.toWrapper());
     }
 }

@@ -1,17 +1,17 @@
 package com.star.mall.persistence.service.impl;
 
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.star.mall.base.query.Query;
 import com.star.mall.persistence.entity.Org;
+import com.star.mall.persistence.entity.OrgUser;
 import com.star.mall.persistence.mapper.OrgMapper;
 import com.star.mall.persistence.service.IOrgService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.star.mall.persistence.service.IOrgUserService;
 import com.star.mall.utils.TreeUtil;
 import com.star.mall.utils.UniqueIdUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +26,9 @@ import java.util.List;
  */
 @Service
 public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements IOrgService {
+
+    @Autowired
+    IOrgUserService orgUserService;
 
     @Override
     public List<Org> getOrgTree(String orgId) {
@@ -54,8 +57,20 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements IOrgS
     }
 
     @Override
-    public IPage queryOrgUsers(Query query) {
-        return null;
+    public void saveOrUpdateOrgUsers(List<String> userIds, String id) {
+        Org org = getById(id);
+        if (ObjectUtil.isNotEmpty(org)) {
+            userIds.forEach(userId -> {
+                OrgUser orgUser = orgUserService.getById(userId);
+                if (ObjectUtil.isEmpty(orgUser)) {
+                    orgUser = new OrgUser();
+                    orgUser.setUserId(userId);
+                    orgUser.setOrgId(id);
+                    orgUserService.save(orgUser);
+                }
+            });
+        }else
+            throw new RuntimeException("组织不存在");
     }
 
 }

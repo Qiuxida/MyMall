@@ -41,35 +41,5 @@ public class OrgUser extends BaseModel {
     @TableField("ORG_ID_")
     private String orgId;
 
-    /**
-     * 乐观锁
-     */
-    @TableField("VERSION_")
-    private Integer version;
-
-    /**
-     * 创建人
-     */
-    @TableField("CREATED_BY_")
-    private String createdBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField("CREATED_TIME_")
-    private LocalDateTime createdTime;
-
-    /**
-     * 更新人
-     */
-    @TableField("UPDATED_BY_")
-    private String updatedBy;
-
-    /**
-     * 更新时间
-     */
-    @TableField("UPDATED_TIME_")
-    private LocalDateTime updatedTime;
-
 
 }

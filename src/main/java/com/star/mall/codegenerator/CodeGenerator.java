@@ -16,7 +16,7 @@ public class CodeGenerator {
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "uc_org_user";
+    private final static String TABLE = "uc_role_user";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
 

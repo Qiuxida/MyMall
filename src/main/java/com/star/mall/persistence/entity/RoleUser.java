@@ -10,16 +10,16 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ * 用户角色关联表
  * </p>
  *
- * @author 邱喜达
- * @since 2020-12-25
+ * @author StarQ
+ * @since 2021-01-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("uc_role")
-public class Role extends BaseModel {
+@TableName("uc_role_user")
+public class RoleUser extends BaseModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,21 +30,15 @@ public class Role extends BaseModel {
     private String id;
 
     /**
-     * 角色编码
+     * 用户ID
      */
-    @TableField("CODE_")
-    private String code;
+    @TableField("USER_ID_")
+    private String userId;
 
     /**
-     * 角色名称
+     * 角色ID
      */
-    @TableField("NAME_")
-    private String name;
-
-    /**
-     * 角色描述
-     */
-    @TableField("DESC_")
-    private String desc;
+    @TableField("ROLE_ID_")
+    private String roleId;
 
 }

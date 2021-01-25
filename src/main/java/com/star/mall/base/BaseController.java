@@ -48,7 +48,7 @@ public class BaseController<M extends IService<T>,T> {
     @PostMapping("/page")
     @ApiOperation(value = "根据分页条件获取实体列表", httpMethod = "POST", notes = "根据分页条件获取实体列表")
     public Page<T> page(@RequestBody Query query) {
-        return service.page(query.getPage(), query.convert2Wrapper());
+        return service.page(query.getPage(), query.toWrapper());
     }
 
 }

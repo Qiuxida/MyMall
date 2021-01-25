@@ -18,9 +18,10 @@ public interface IRoleService extends IService<Role> {
 
     /**
      * 添加某个角色下的用户
-     * @param users
-     * @param code
+     * @param userIds
+     * @param id
      * @return
      */
-    void saveOrUpdateRoleUsers(List<User> users, String code);
+    void saveOrUpdateRoleUsers(List<String> userIds, String id);
+
 }
