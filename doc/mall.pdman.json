@@ -1429,6 +1429,109 @@
             }
           ],
           "chnname": "商品类目"
+        },
+        {
+          "title": "mall_goods_specs",
+          "fields": [
+            {
+              "name": "ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "GOODS_ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "商品ID"
+            },
+            {
+              "name": "DELETED_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "逻辑删除"
+            },
+            {
+              "name": "VERSION_",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "CREATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "商品规格表"
         }
       ],
       "graphCanvas": {
@@ -1456,6 +1559,14 @@
             "x": -60,
             "y": 240,
             "id": "ae5c2a49"
+          },
+          {
+            "shape": "table",
+            "title": "mall_goods_specs",
+            "moduleName": false,
+            "x": -60,
+            "y": -40,
+            "id": "38b0ac72"
           }
         ],
         "edges": [
@@ -1496,6 +1607,25 @@
             ],
             "sourceAnchor": 6,
             "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "38b0ac72",
+            "target": "8a4a3ff8",
+            "id": "92dc9f48",
+            "controlPoints": [
+              {
+                "x": 84.240234375,
+                "y": -77.69736842105263
+              },
+              {
+                "x": 145.759765625,
+                "y": 152.15
+              }
+            ],
+            "sourceAnchor": 3,
+            "targetAnchor": 0
           }
         ]
       },
@@ -1519,6 +1649,17 @@
           },
           "to": {
             "entity": "mall_category",
+            "field": "ID_"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "mall_goods_specs",
+            "field": "GOODS_ID_"
+          },
+          "to": {
+            "entity": "mall_goods",
             "field": "ID_"
           }
         }
