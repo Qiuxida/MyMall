@@ -1,8 +1,8 @@
 {
   "modules": [
     {
-      "name": "userCenter",
-      "chnname": "用户中心",
+      "name": "user",
+      "chnname": "用户",
       "entities": [
         {
           "title": "uc_user",
@@ -849,7 +849,7 @@
       "chnname": "日志",
       "entities": [
         {
-          "title": "portal_operation_log",
+          "title": "sys_operation_log",
           "fields": [
             {
               "name": "ID_",
@@ -944,13 +944,31 @@
           "chnname": "操作日志"
         },
         {
-          "title": "portal_error_log",
+          "title": "sys_error_log",
           "fields": [
             {
               "name": "ID_",
               "type": "LongKey",
               "remark": "",
               "chnname": "主键"
+            },
+            {
+              "name": "CODE_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "错误码"
+            },
+            {
+              "name": "TYPE_",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "错误类型"
+            },
+            {
+              "name": "CONTENT_",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "错误内容"
             },
             {
               "name": "DELETED_",
@@ -1044,6 +1062,467 @@
         "nodes": []
       },
       "associations": []
+    },
+    {
+      "name": "goods",
+      "chnname": "商品",
+      "entities": [
+        {
+          "title": "mall_goods",
+          "fields": [
+            {
+              "name": "ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "CODE_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "商品码"
+            },
+            {
+              "name": "NAME_",
+              "type": "Name",
+              "remark": "",
+              "chnname": "商品名称"
+            },
+            {
+              "name": "CATEGORY_ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "类目ID"
+            },
+            {
+              "name": "BRAND_ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "品牌ID"
+            },
+            {
+              "name": "DELETED_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "逻辑删除"
+            },
+            {
+              "name": "VERSION_",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "CREATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "商品表"
+        },
+        {
+          "title": "mall_brand",
+          "fields": [
+            {
+              "name": "ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "NAME_",
+              "type": "Name",
+              "remark": "",
+              "chnname": "品牌名称"
+            },
+            {
+              "name": "SHORT_NAME_",
+              "type": "Name",
+              "remark": "",
+              "chnname": "品牌简称"
+            },
+            {
+              "name": "ICON_",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "品牌图标"
+            },
+            {
+              "name": "DESC_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "品牌介绍"
+            },
+            {
+              "name": "DELETED_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "逻辑删除"
+            },
+            {
+              "name": "VERSION_",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "CREATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "品牌表"
+        },
+        {
+          "title": "mall_category",
+          "fields": [
+            {
+              "name": "ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "NAME_",
+              "type": "Name",
+              "remark": "",
+              "chnname": "类目名称"
+            },
+            {
+              "name": "PARENT_ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "父ID"
+            },
+            {
+              "name": "DESC_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "类目描述"
+            },
+            {
+              "name": "PATH_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "路径"
+            },
+            {
+              "name": "DELETED_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "逻辑删除"
+            },
+            {
+              "name": "VERSION_",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "乐观锁"
+            },
+            {
+              "name": "CREATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "创建人"
+            },
+            {
+              "name": "CREATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间"
+            },
+            {
+              "name": "UPDATED_BY_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "更新人"
+            },
+            {
+              "name": "UPDATED_TIME_",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "更新时间"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "商品类目"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [
+          {
+            "shape": "table",
+            "title": "mall_brand",
+            "moduleName": false,
+            "x": 660,
+            "y": 240,
+            "id": "a210acef"
+          },
+          {
+            "shape": "table",
+            "title": "mall_goods",
+            "moduleName": false,
+            "x": 290,
+            "y": 240,
+            "id": "8a4a3ff8"
+          },
+          {
+            "shape": "table",
+            "title": "mall_category",
+            "moduleName": false,
+            "x": -60,
+            "y": 240,
+            "id": "ae5c2a49"
+          }
+        ],
+        "edges": [
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "8a4a3ff8",
+            "target": "a210acef",
+            "id": "a73a0a21",
+            "controlPoints": [
+              {
+                "x": 434.240234375,
+                "y": 232.47
+              },
+              {
+                "x": 515.759765625,
+                "y": 152.15
+              }
+            ],
+            "sourceAnchor": 9,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "8a4a3ff8",
+            "target": "ae5c2a49",
+            "id": "f22213ed",
+            "controlPoints": [
+              {
+                "x": 145.759765625,
+                "y": 212.39
+              },
+              {
+                "x": 84.240234375,
+                "y": 152.15
+              }
+            ],
+            "sourceAnchor": 6,
+            "targetAnchor": 1
+          }
+        ]
+      },
+      "associations": [
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "mall_goods",
+            "field": "BRAND_ID_"
+          },
+          "to": {
+            "entity": "mall_brand",
+            "field": "ID_"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "mall_goods",
+            "field": "CATEGORY_ID_"
+          },
+          "to": {
+            "entity": "mall_category",
+            "field": "ID_"
+          }
+        }
+      ]
     }
   ],
   "dataTypeDomains": {

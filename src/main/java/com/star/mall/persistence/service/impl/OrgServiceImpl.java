@@ -13,6 +13,7 @@ import com.star.mall.utils.TreeUtil;
 import com.star.mall.utils.UniqueIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -57,11 +58,15 @@ public class OrgServiceImpl extends ServiceImpl<OrgMapper, Org> implements IOrgS
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveOrUpdateOrgUsers(List<String> userIds, String id) {
         Org org = getById(id);
         if (ObjectUtil.isNotEmpty(org)) {
             userIds.forEach(userId -> {
-                OrgUser orgUser = orgUserService.getById(userId);
+                QueryWrapper wrapper = new QueryWrapper();
+                wrapper.eq("user_id_", userId);
+                wrapper.eq("org_id_", id);
+                OrgUser orgUser = orgUserService.getOne(wrapper);
                 if (ObjectUtil.isEmpty(orgUser)) {
                     orgUser = new OrgUser();
                     orgUser.setUserId(userId);

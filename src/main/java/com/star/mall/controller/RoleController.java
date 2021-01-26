@@ -8,7 +8,9 @@ import com.star.mall.persistence.entity.User;
 import com.star.mall.persistence.service.IRoleService;
 import com.star.mall.persistence.service.IRoleUserService;
 import com.star.mall.persistence.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import com.star.mall.base.BaseController;
@@ -27,26 +29,31 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mall/role")
+@Api("角色管理")
 public class RoleController extends BaseController<IRoleService, Role> {
 
-    @Autowired
+    @Resource
     IUserService userService;
-    @Autowired
+    @Resource
     IRoleUserService roleUserService;
 
     @PostMapping("/users/page")
-    public IPage<User> getUsersPage(@RequestBody Query query) {
+    @ApiOperation(value = "获取角色下用户分页", httpMethod = "GET", notes = "获取角色下用户分页")
+    public IPage<User> getUsersPage(@ApiParam(value = "查询参数", name = "query") @RequestBody Query query) {
         return userService.queryRoleUsers(query);
     }
 
     @PostMapping("/{id}/users")
-    public BaseResponse createRoleUsers(@RequestBody List<String> userIds, @PathVariable("id") String id) {
+    @ApiOperation(value = "在某角色下添加用户", httpMethod = "POST", notes = "在某角色下添加用户")
+    public BaseResponse createRoleUsers(@ApiParam(value = "用户ID", name = "userIds") @RequestBody List<String> userIds,
+                                        @ApiParam(value = "角色ID", name = "id") @PathVariable("id") String id) {
         service.saveOrUpdateRoleUsers(userIds, id);
         return BaseResponse.SUCCESS("保存成功");
     }
 
     @DeleteMapping("/users")
-    public BaseResponse deleteRoleUsers(@RequestParam("ids") String ...ids) {
+    @ApiOperation(value = "批量删除角色下用户", httpMethod = "DELETE", notes = "批量删除角色下用户")
+    public BaseResponse deleteRoleUsers(@ApiParam(value = "角色ID", name = "ids") @RequestParam("ids") String ...ids) {
         roleUserService.removeByIds(Arrays.asList(ids));
         return BaseResponse.SUCCESS("删除成功");
     }
