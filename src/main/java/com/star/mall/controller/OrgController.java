@@ -7,11 +7,13 @@ import com.star.mall.persistence.entity.Org;
 import com.star.mall.persistence.entity.User;
 import com.star.mall.persistence.service.IOrgService;
 import com.star.mall.persistence.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import com.star.mall.base.BaseController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,28 +26,33 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mall/org")
+@Api("组织管理")
 public class OrgController extends BaseController<IOrgService, Org> {
 
-    @Autowired
+    @Resource
     IUserService userService;
 
     @GetMapping("/tree/{orgId}")
+    @ApiOperation(value = "获取组织树", httpMethod = "GET", notes = "获取组织树")
     public List<Org> getOrgTree(@PathVariable String orgId) {
         return service.getOrgTree(orgId);
     }
 
     @PostMapping("/parent")
+    @ApiOperation(value = "获取组织树", httpMethod = "GET", notes = "获取组织树")
     public BaseResponse addByParentId(@RequestBody Org org) {
         service.addByParentId(org);
         return BaseResponse.SUCCESS("保存成功");
     }
 
-    @GetMapping("/users/page")
+    @PostMapping("/users/page")
+    @ApiOperation(value = "获取组织用户分页", httpMethod = "POST", notes = "获取组织用户分页")
     public IPage<User> getUsersByCode(@RequestBody Query query) {
         return userService.queryOrgUsers(query);
     }
 
     @PostMapping("/{id}/users")
+    @ApiOperation(value = "在某组织下添加用户", httpMethod = "POST", notes = "在某组织下添加用户")
     public BaseResponse createOrgUsers(@RequestBody List<String> userIds, @PathVariable String id) {
         service.saveOrUpdateOrgUsers(userIds, id);
         return BaseResponse.SUCCESS("保存成功");

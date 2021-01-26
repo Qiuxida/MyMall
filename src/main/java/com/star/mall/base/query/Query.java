@@ -5,6 +5,9 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.star.mall.utils.BeanUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,13 +20,15 @@ import java.util.*;
  * @since 2021-01-23
  */
 @Data
+@ApiModel(value = "query", description = "分页查询参数")
 public class Query<T> implements Serializable {
     private static final long serialVersionUID = -2187346073476283340L;
 
-    private List<Param> query;
-
+    @ApiModelProperty(value = "查询字段数组", name = "query")
+    private List<Param> query = new ArrayList<>();
+    @ApiModelProperty(value = "分页参数", name = "page")
     private Page<T> page;
-
+    @ApiModelProperty(value = "排序字段数组", name = "sorter")
     private List<Sorter> sorter = new ArrayList<>();
 
     public QueryWrapper<T> toWrapper() {

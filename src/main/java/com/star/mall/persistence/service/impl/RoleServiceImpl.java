@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.star.mall.persistence.service.IRoleUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +32,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     IRoleUserService roleUserService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveOrUpdateRoleUsers(List<String> userIds, String id) {
         Role role = getById(id);
         if (ObjectUtil.isNotEmpty(role)) {
