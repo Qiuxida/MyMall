@@ -7,12 +7,15 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
@@ -25,6 +28,9 @@ import java.lang.reflect.Method;
 @Component
 @Log4j2
 public class LogAspect {
+
+    @Resource
+    private KafkaTemplate<String,String> kafkaTemplate;
 
     @Pointcut("@annotation(io.swagger.annotations.ApiOperation)")
     public void operationLogCut() {}
@@ -42,6 +48,7 @@ public class LogAspect {
         ApiOperation operation = method.getAnnotation(ApiOperation.class);
         log.info(keys);
         log.info("operationLog");
+        kafkaTemplate.send("topic1","operationLog");
     }
 
     @AfterReturning(pointcut = "errorLogCut()", returning = "keys")
