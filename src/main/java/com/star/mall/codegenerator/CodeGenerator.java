@@ -16,9 +16,10 @@ public class CodeGenerator {
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "uc_role_user";
+    private final static String TABLE = "sys_operation_log";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
+    private final static String TABLE_PREFIX = "sys_";
 
     public static void main(String[] args) {
         // 代码生成器
@@ -77,7 +78,7 @@ public class CodeGenerator {
         strategy.setSuperControllerClass(SUPER_CONTROLLER);
         strategy.setInclude(TABLE);
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix("uc_");
+        strategy.setTablePrefix(TABLE_PREFIX);
         strategy.setLogicDeleteFieldName("deleted");
 
         strategy.setSuperEntityColumns("create_by_","create_time","update_by_","update_time_", "deleted_");

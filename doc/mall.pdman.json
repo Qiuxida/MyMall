@@ -855,7 +855,45 @@
               "name": "ID_",
               "type": "LongKey",
               "remark": "",
-              "chnname": "主键"
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "URL_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "请求地址"
+            },
+            {
+              "name": "TYPE_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "请求类型"
+            },
+            {
+              "name": "IP_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "IP"
+            },
+            {
+              "name": "REQUEST_",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "请求内容"
+            },
+            {
+              "name": "RESPONSE_",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "响应内容"
+            },
+            {
+              "name": "NOTE_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "详细"
             },
             {
               "name": "DELETED_",
@@ -950,7 +988,9 @@
               "name": "ID_",
               "type": "LongKey",
               "remark": "",
-              "chnname": "主键"
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
             },
             {
               "name": "CODE_",
@@ -1058,8 +1098,25 @@
         }
       ],
       "graphCanvas": {
-        "edges": [],
-        "nodes": []
+        "nodes": [
+          {
+            "shape": "table",
+            "title": "sys_operation_log",
+            "moduleName": false,
+            "x": 200,
+            "y": 200,
+            "id": "e0e31d4c"
+          },
+          {
+            "shape": "table",
+            "title": "sys_error_log",
+            "moduleName": false,
+            "x": 550,
+            "y": 200,
+            "id": "9c1beb20"
+          }
+        ],
+        "edges": []
       },
       "associations": []
     },
