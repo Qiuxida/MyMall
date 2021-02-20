@@ -67,7 +67,7 @@ public class Query<T> implements Serializable {
     }
 
     public void operate(Param param, QueryWrapper<T> wrapper) {
-        String field = BeanUtil.toLineString(param.getField())+"_";
+        String field = param.getField();
         switch (param.getOperation()) {
             case EQUAL:
                 wrapper.eq(field,param.getValue());
