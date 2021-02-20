@@ -37,4 +37,10 @@ public class User extends BaseModel implements Serializable {
     @TableField("password_")
     private String password;
 
+    @TableField("phone_")
+    private String phone;
+
+    @TableField("email_")
+    private String email;
+
 }

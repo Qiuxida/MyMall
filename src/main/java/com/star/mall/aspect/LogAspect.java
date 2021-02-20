@@ -1,10 +1,9 @@
 package com.star.mall.aspect;
 
+import cn.hutool.json.JSONUtil;
 import com.star.mall.persistence.entity.OperationLog;
-import com.star.mall.persistence.service.IOperationLogService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +31,7 @@ import java.lang.reflect.Method;
 public class LogAspect {
 
     @Resource
-    private KafkaTemplate<String, OperationLog> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Pointcut("@annotation(io.swagger.annotations.ApiOperation)")
     public void operationLogCut() {}
@@ -54,7 +53,7 @@ public class LogAspect {
         log.setNote(operation.notes());
         log.setType(operation.httpMethod());
 
-        kafkaTemplate.send("opr-log",log);
+        kafkaTemplate.send("opr-log", JSONUtil.toJsonStr(log));
     }
 
     @AfterReturning(pointcut = "errorLogCut()", returning = "keys")

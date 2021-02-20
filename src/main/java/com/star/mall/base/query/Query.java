@@ -67,33 +67,34 @@ public class Query<T> implements Serializable {
     }
 
     public void operate(Param param, QueryWrapper<T> wrapper) {
+        String field = BeanUtil.toLineString(param.getField())+"_";
         switch (param.getOperation()) {
             case EQUAL:
-                wrapper.eq(param.getField(),param.getValue());
+                wrapper.eq(field,param.getValue());
                 break;
             case NOT_EQUAL:
-                wrapper.ne(param.getField(),param.getValue());
+                wrapper.ne(field,param.getValue());
                 break;
             case IS_NULL:
-                wrapper.isNull(param.getField());
+                wrapper.isNull(field);
                 break;
             case NOT_NULL:
-                wrapper.isNotNull(param.getField());
+                wrapper.isNotNull(field);
                 break;
             case LESS_THAN:
-                wrapper.le(param.getField(),param.getValue());
+                wrapper.le(field,param.getValue());
                 break;
             case GREAT_THAN:
-                wrapper.ge(param.getField(), param.getValue());
+                wrapper.ge(field, param.getValue());
                 break;
             case LEFT_LIKE:
-                wrapper.likeLeft(param.getField(),param.getValue());
+                wrapper.likeLeft(field,param.getValue());
                 break;
             case RIGHT_LIKE:
-                wrapper.likeRight(param.getField(),param.getValue());
+                wrapper.likeRight(field,param.getValue());
                 break;
             case LIKE:
-                wrapper.like(param.getField(),param.getValue());
+                wrapper.like(field,param.getValue());
                 break;
             default:
                 break;

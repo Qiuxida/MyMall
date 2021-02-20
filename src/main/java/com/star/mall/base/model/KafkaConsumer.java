@@ -1,5 +1,6 @@
 package com.star.mall.base.model;
 
+import cn.hutool.json.JSONUtil;
 import com.star.mall.persistence.entity.OperationLog;
 import com.star.mall.persistence.service.IOperationLogService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -15,8 +16,8 @@ public class KafkaConsumer {
     IOperationLogService operationLogService;
 
     @KafkaListener(topics = {"opr-log"})
-    public void onMessage(ConsumerRecord<?, ?> record){
-        OperationLog log = (OperationLog) record.value();
+    public void onMessage(ConsumerRecord<String, String> record){
+        OperationLog log = JSONUtil.toBean(record.value(), OperationLog.class);
         operationLogService.save(log);
     }
 }

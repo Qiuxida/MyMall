@@ -62,7 +62,7 @@ public class OperationLog extends BaseModel {
     /**
      * IP地址
      */
-    @TableField("IP")
+    @TableField("IP_")
     private String ip;
 
 }
