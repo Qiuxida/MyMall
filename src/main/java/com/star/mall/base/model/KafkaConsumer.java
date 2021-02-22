@@ -20,4 +20,9 @@ public class KafkaConsumer {
         OperationLog log = JSONUtil.toBean(record.value(), OperationLog.class);
         operationLogService.save(log);
     }
+
+    @KafkaListener(topics = {"err-log"})
+    public void onErrorMessage(ConsumerRecord<String, String> record) {
+
+    }
 }

@@ -34,6 +34,18 @@
               "chnname": "用户密码"
             },
             {
+              "name": "PHONE_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "用户电话"
+            },
+            {
+              "name": "EMAIL_",
+              "type": "ShortString",
+              "remark": "",
+              "chnname": "用户电子邮件"
+            },
+            {
               "name": "DELETED_",
               "type": "YesNo",
               "remark": "",
@@ -930,6 +942,12 @@
               "type": "DateTime",
               "remark": "",
               "chnname": "更新时间"
+            },
+            {
+              "name": "ACCOUNT_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "操作人账号"
             }
           ],
           "indexs": [],

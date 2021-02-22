@@ -52,6 +52,8 @@ public class LogAspect {
         log.setIp(request.getRemoteAddr());
         log.setNote(operation.notes());
         log.setType(operation.httpMethod());
+        log.setUrl(request.getRequestURI());
+        log.setRequest(request.getQueryString());
 
         kafkaTemplate.send("opr-log", JSONUtil.toJsonStr(log));
     }
