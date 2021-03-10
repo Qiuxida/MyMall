@@ -5,6 +5,11 @@ import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import org.springframework.beans.factory.annotation.Value;
 
+/**
+ * ID生成器
+ * @author StarQ
+ * @since 2021-03-10
+ */
 public class CustomIdGenerator implements IdentifierGenerator {
 
     @Value("${system.id.workerId:1}")

@@ -19,10 +19,10 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ *  角色服务实现类
  * </p>
  *
- * @author 邱喜达
+ * @author StarQ
  * @since 2020-12-25
  */
 @Service

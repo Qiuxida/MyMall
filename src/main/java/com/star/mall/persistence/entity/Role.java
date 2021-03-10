@@ -10,10 +10,10 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *  角色
  * </p>
  *
- * @author 邱喜达
+ * @author StarQ
  * @since 2020-12-25
  */
 @Data

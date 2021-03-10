@@ -7,18 +7,22 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 
 import com.star.mall.base.model.BaseModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
  *  管理用户
  * </p>
  *
- * @author 邱喜达
+ * @author StarQ
  * @since 2020-12-25
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @TableName("uc_user")
 public class User extends BaseModel implements Serializable {

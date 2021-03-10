@@ -6,6 +6,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+/**
+ * Spring上下文
+ * @author StarQ
+ * @since 2021-03-10
+ */
 @Component
 @Log4j2
 public class ApplicationContextUtil implements ApplicationContextAware {

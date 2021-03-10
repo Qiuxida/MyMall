@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
- *  Mapper 接口
+ *  用户Mapper 接口
  * </p>
  *
- * @author 邱喜达
+ * @author StarQ
  * @since 2020-12-25
  */
 public interface UserMapper extends BaseMapper<User> {

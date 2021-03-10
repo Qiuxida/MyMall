@@ -12,6 +12,11 @@ import org.springframework.web.filter.CorsFilter;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.config.http.SessionCreationPolicy;
 
+/**
+ * SpringSecurity配置类
+ * @author StarQ
+ * @since 2021-03-10
+ */
 @Configuration
 //@EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)

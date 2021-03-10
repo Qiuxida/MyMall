@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
  * 组织表 
  * </p>
  *
- * @author 邱喜达
+ * @author StarQ
  * @since 2021-01-17
  */
 @Data

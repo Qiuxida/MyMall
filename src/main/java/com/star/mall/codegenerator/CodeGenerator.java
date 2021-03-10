@@ -5,6 +5,11 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
+/**
+ * 代码生成器
+ * @author StarQ
+ * @since 2021-3-10
+ */
 public class CodeGenerator {
 
     private final static String AUTHOR = "StarQ";

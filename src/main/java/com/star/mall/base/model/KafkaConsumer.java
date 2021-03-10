@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+/**
+ * kafka消费者
+ * @author StarQ
+ * @since 2021-3-10
+ */
 @Component
 public class KafkaConsumer {
 

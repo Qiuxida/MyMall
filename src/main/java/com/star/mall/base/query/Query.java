@@ -15,7 +15,6 @@ import java.util.*;
 
 /**
  * 查询参数
- * @param <T>
  * @author StarQ
  * @since 2021-01-23
  */

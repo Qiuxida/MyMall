@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Bean转换对应属性
  * @author qiuxd
+ * @since 2020-12-31
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

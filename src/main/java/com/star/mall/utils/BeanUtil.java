@@ -2,7 +2,7 @@ package com.star.mall.utils;
 
 /**
  * 对象工具类
- * @author qiuxd
+ * @author StarQ
  * @since 2021-2-20
  */
 public class BeanUtil {
