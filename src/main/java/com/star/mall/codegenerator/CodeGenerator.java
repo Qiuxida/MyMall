@@ -21,7 +21,7 @@ public class CodeGenerator {
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "mall_category";
+    private final static String TABLE = "mall_goods";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
     private final static String TABLE_PREFIX = "mall_";

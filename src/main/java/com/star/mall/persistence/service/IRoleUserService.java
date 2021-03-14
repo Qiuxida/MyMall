@@ -1,5 +1,6 @@
 package com.star.mall.persistence.service;
 
+import com.star.mall.model.UserRoleParam;
 import com.star.mall.persistence.entity.RoleUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.star.mall.persistence.entity.User;
@@ -16,4 +17,5 @@ import java.util.List;
  */
 public interface IRoleUserService extends IService<RoleUser> {
 
+    void addRoleByUserId(String id, UserRoleParam param);
 }

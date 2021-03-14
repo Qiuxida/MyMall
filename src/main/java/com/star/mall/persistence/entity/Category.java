@@ -57,6 +57,12 @@ public class Category extends BaseModel implements Tree {
     private String path;
 
     /**
+     * 类型
+     */
+    @TableField("TYPE_")
+    private String type;
+
+    /**
      * 子节点
      */
     @TableField(exist = false)

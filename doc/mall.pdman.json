@@ -598,7 +598,51 @@
               "name": "ID_",
               "type": "LongKey",
               "remark": "",
-              "chnname": "主键"
+              "chnname": "主键",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "ALIAS_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "别名"
+            },
+            {
+              "name": "NAME_",
+              "type": "Name",
+              "remark": "",
+              "chnname": "名称"
+            },
+            {
+              "name": "PARENT_ID_",
+              "type": "LongKey",
+              "remark": "",
+              "chnname": "上级ID"
+            },
+            {
+              "name": "PATH_",
+              "type": "MiddleString",
+              "remark": "",
+              "chnname": "上下级路径"
+            },
+            {
+              "name": "HREF_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "链接"
+            },
+            {
+              "name": "ICON_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "图标"
+            },
+            {
+              "name": "ENABLED_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否启用"
             },
             {
               "name": "DELETED_",
@@ -728,6 +772,14 @@
             "x": 320,
             "y": 550,
             "id": "c0dc585b"
+          },
+          {
+            "shape": "table",
+            "title": "sys_menu",
+            "moduleName": false,
+            "x": 340,
+            "y": 920,
+            "id": "71fa6e28"
           }
         ],
         "edges": [
@@ -762,8 +814,8 @@
                 "y": 142.27380952380952
               },
               {
-                "x": 464.240234375,
-                "y": 122.16304347826087
+                "x": 476.240234375,
+                "y": 102.13888888888889
               }
             ],
             "sourceAnchor": 2,
@@ -781,8 +833,8 @@
                 "y": 502.2738095238095
               },
               {
-                "x": 175.759765625,
-                "y": 122.16304347826087
+                "x": 163.759765625,
+                "y": 102.13888888888889
               }
             ],
             "sourceAnchor": 2,
@@ -1166,6 +1218,12 @@
               "chnname": "商品名称"
             },
             {
+              "name": "IMAGE_",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "商品图片"
+            },
+            {
               "name": "CATEGORY_ID_",
               "type": "LongKey",
               "remark": "",
@@ -1176,6 +1234,18 @@
               "type": "LongKey",
               "remark": "",
               "chnname": "品牌ID"
+            },
+            {
+              "name": "DESC_",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "商品描述"
+            },
+            {
+              "name": "IS_SALE_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "是否上架"
             },
             {
               "name": "DELETED_",
@@ -1399,7 +1469,7 @@
               "name": "NAME_",
               "type": "Name",
               "remark": "",
-              "chnname": "类目名称"
+              "chnname": "分类名称"
             },
             {
               "name": "PARENT_ID_",
@@ -1418,6 +1488,12 @@
               "type": "MiddleString",
               "remark": "",
               "chnname": "路径"
+            },
+            {
+              "name": "TYPE_",
+              "type": "YesNo",
+              "remark": "",
+              "chnname": "类型"
             },
             {
               "name": "DELETED_",
@@ -1503,7 +1579,7 @@
               "relationNoShow": true
             }
           ],
-          "chnname": "商品类目"
+          "chnname": "分类表"
         },
         {
           "title": "mall_goods_specs",
@@ -1661,7 +1737,7 @@
                 "y": 152.15
               }
             ],
-            "sourceAnchor": 9,
+            "sourceAnchor": 10,
             "targetAnchor": 0
           },
           {
@@ -1680,7 +1756,7 @@
                 "y": 152.15
               }
             ],
-            "sourceAnchor": 6,
+            "sourceAnchor": 8,
             "targetAnchor": 1
           },
           {

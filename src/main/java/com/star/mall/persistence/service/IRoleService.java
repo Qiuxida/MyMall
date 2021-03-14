@@ -1,5 +1,6 @@
 package com.star.mall.persistence.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.star.mall.persistence.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.star.mall.persistence.entity.User;
@@ -24,4 +25,5 @@ public interface IRoleService extends IService<Role> {
      */
     void saveOrUpdateRoleUsers(List<String> userIds, String id);
 
+    List<Role> getRolesByUserId(String id);
 }
