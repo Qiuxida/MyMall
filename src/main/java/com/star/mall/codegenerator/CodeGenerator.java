@@ -21,10 +21,10 @@ public class CodeGenerator {
 
     private final static String PACKAGE = "mall";
     private final static String PARENT = "com.star";
-    private final static String TABLE = "mall_goods";
+    private final static String TABLE = "sys_menu";
     private final static String SUPER_CONTROLLER = "com.star.mall.base.BaseController";
     private final static String SUPER_MODEL = "com.star.mall.base.model.BaseModel";
-    private final static String TABLE_PREFIX = "mall_";
+    private final static String TABLE_PREFIX = "sys_";
 
     public static void main(String[] args) {
         // 代码生成器
