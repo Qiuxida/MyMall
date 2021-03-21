@@ -8,6 +8,8 @@ import java.util.List;
 import com.star.mall.base.model.BaseModel;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.star.mall.base.model.Tree;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,47 +24,48 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("uc_org")
+@ApiModel(value = "组织")
 public class Org extends BaseModel implements Tree {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
-     */
-    @TableId("ID_")
-    private String id;
-
-    /**
-     * 编码
+     * 组织编码
      */
     @TableField("CODE_")
+    @ApiModelProperty(value = "组织编码", required = true)
     private String code;
 
     /**
-     * 名称
+     * 组织名称
      */
     @TableField("NAME_")
+    @ApiModelProperty(value = "组织名称", required = true)
     private String name;
 
     /**
-     * 描述
+     * 组织描述
      */
     @TableField("DESC_")
+    @ApiModelProperty(value = "组织描述", required = true)
     private String desc;
 
     /**
      * 父组织ID
      */
     @TableField("PARENT_ID_")
+    @ApiModelProperty(value = "父组织ID", required = true)
     private String parentId;
 
     /**
-     * 路径
+     * 组织路径
      */
     @TableField("PATH_")
+    @ApiModelProperty(value = "组织路径")
     private String path;
 
     @TableField(exist = false)
+    @ApiModelProperty(value = "子组织")
     private List<Org> children;
 
     @Override

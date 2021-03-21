@@ -29,7 +29,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mall/role")
-@Api("角色管理")
+@Api(value = "角色管理", tags = {"角色管理"})
 public class RoleController extends BaseController<IRoleService, Role> {
 
     @Resource
@@ -38,22 +38,22 @@ public class RoleController extends BaseController<IRoleService, Role> {
     IRoleUserService roleUserService;
 
     @PostMapping("/users/page")
-    @ApiOperation(value = "获取角色下用户分页", httpMethod = "GET", notes = "获取角色下用户分页")
-    public IPage<User> getUsersPage(@ApiParam(value = "查询参数", name = "query") @RequestBody Query query) {
+    @ApiOperation(value = "获取角色下用户分页", httpMethod = "POST", notes = "获取角色下用户分页")
+    public IPage<User> getUsersPage(@ApiParam(value = "查询参数", name = "query", required = true) @RequestBody Query<User> query) {
         return userService.queryRoleUsers(query);
     }
 
     @PostMapping("/{id}/users")
     @ApiOperation(value = "在某角色下添加用户", httpMethod = "POST", notes = "在某角色下添加用户")
-    public BaseResponse createRoleUsers(@ApiParam(value = "用户ID", name = "userIds") @RequestBody List<String> userIds,
-                                        @ApiParam(value = "角色ID", name = "id") @PathVariable("id") String id) {
+    public BaseResponse<Role> createRoleUsers(@ApiParam(value = "用户ID", name = "userIds", required = true) @RequestBody List<String> userIds,
+                                        @ApiParam(value = "角色ID", name = "id", required = true) @PathVariable("id") String id) {
         service.saveOrUpdateRoleUsers(userIds, id);
         return BaseResponse.SUCCESS("保存成功");
     }
 
-    @DeleteMapping("/users")
+    @DeleteMapping("/users/{ids}")
     @ApiOperation(value = "批量删除角色下用户", httpMethod = "DELETE", notes = "批量删除角色下用户")
-    public BaseResponse deleteRoleUsers(@ApiParam(value = "角色ID", name = "ids") @RequestParam("ids") String ...ids) {
+    public BaseResponse<Role> deleteRoleUsers(@ApiParam(value = "角色ID集，用,分隔", name = "ids", required = true) @PathVariable("ids") String ...ids) {
         roleUserService.removeByIds(Arrays.asList(ids));
         return BaseResponse.SUCCESS("删除成功");
     }

@@ -117,12 +117,6 @@ class MallApplicationTests {
     public void testBulkDocument() throws IOException {
         BulkRequest request = new BulkRequest();
         List<User> users = new ArrayList<>();
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "1", "", "", ""));
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "2", "", "", ""));
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "3", "", "", ""));
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "4", "", "", ""));
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "5", "", "", ""));
-        users.add(new User(UniqueIdUtil.getSid(), "admin", "6", "", "", ""));
 
         users.forEach(item -> {
             request.add(new IndexRequest("kuang_index").id(item.getName()).source(JSONUtil.toJsonStr(item), XContentType.JSON));

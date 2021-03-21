@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 
 import com.star.mall.base.model.BaseModel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 
 /**
  * <p>
@@ -21,30 +21,32 @@ import lombok.NoArgsConstructor;
  * @since 2020-12-25
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@ToString
 @TableName("uc_user")
+@ApiModel("用户")
 public class User extends BaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("id_")
-    private String id;
-
     @TableField("account_")
+    @ApiModelProperty(value = "用户账号", required = true)
     private String account;
 
     @TableField("name_")
+    @ApiModelProperty(value = "用户姓名", required = true)
     private String name;
 
     @TableField("password_")
+    @ApiModelProperty(value = "用户密码", required = true)
     private String password;
 
     @TableField("phone_")
+    @ApiModelProperty(value = "用户电话")
     private String phone;
 
     @TableField("email_")
+    @ApiModelProperty(value = "用户电子邮箱")
     private String email;
 
 }

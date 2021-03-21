@@ -7,7 +7,12 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@ControllerAdvice
+/**
+ * 全局响应处理类
+ * @author StarQ
+ * @since 2021-3-21
+ */
+@ControllerAdvice("com.star.mall.controller")
 public class BaseResponseAdvice implements ResponseBodyAdvice {
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {

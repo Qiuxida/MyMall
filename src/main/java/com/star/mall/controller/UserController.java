@@ -8,6 +8,8 @@ import com.star.mall.persistence.service.IRoleService;
 import com.star.mall.persistence.service.IRoleUserService;
 import com.star.mall.persistence.service.IUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import com.star.mall.base.BaseController;
@@ -25,7 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/mall/user")
-@Api("用户管理")
+@Api(value = "用户管理", tags = {"用户管理"})
 public class UserController extends BaseController<IUserService, User> {
 
     @Resource
@@ -34,12 +36,15 @@ public class UserController extends BaseController<IUserService, User> {
     IRoleUserService iRoleUserService;
 
     @GetMapping("{id}/roles")
-    public List<Role> getUserRoles(@PathVariable String id) {
+    @ApiOperation(value = "根据用户ID获取该用户的角色列表", notes = "根据用户ID获取该用户的角色列表", httpMethod = "GET")
+    public List<Role> getUserRoles(@ApiParam(value="用户ID", required = true) @PathVariable String id) {
         return iRoleService.getRolesByUserId(id);
     }
 
     @PutMapping("{id}/roles")
-    public BaseResponse putUserRole(@PathVariable String id, @RequestBody UserRoleParam param) {
+    @ApiOperation(value = "添加角色到用户中", notes = "添加角色到用户中", httpMethod = "PUT")
+    public BaseResponse<Role> putUserRole(@ApiParam(value = "用户ID", required = true) @PathVariable String id,
+                                    @ApiParam(value = "角色添加删除ID参数", required = true) @RequestBody UserRoleParam param) {
         iRoleUserService.addRoleByUserId(id, param);
         return BaseResponse.SUCCESS("添加成功");
     }

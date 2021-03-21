@@ -29,7 +29,7 @@ public class BaseController<M extends IService<T>,T> {
 
     @PostMapping("")
     @ApiOperation(value = "根据ID创建实体", httpMethod = "POST", notes = "根据ID创建实体")
-    public BaseResponse<T> create(@ApiParam (name = "t", value = "新增实体对象", required = true)@RequestBody T t) {
+    public BaseResponse<T> create(@ApiParam (name = "model", value = "新增实体对象", required = true)@RequestBody T t) {
         if (!service.save(t)){
             throw new RuntimeException("创建失败");
         }
@@ -37,8 +37,8 @@ public class BaseController<M extends IService<T>,T> {
     }
 
     @PutMapping("")
-    @ApiOperation(value = "根据ID更新实体", httpMethod = "GET", notes = "根据ID更新实体")
-    public BaseResponse<T> update(@ApiParam(name = "t", value = "更新实体对象", required = true) @RequestBody T t) {
+    @ApiOperation(value = "根据ID更新实体", httpMethod = "PUT", notes = "根据ID更新实体")
+    public BaseResponse<T> update(@ApiParam(name = "model", value = "更新实体对象", required = true) @RequestBody T t) {
         if (!service.updateById(t)) {
             throw new RuntimeException("更新失败");
         }
@@ -46,14 +46,17 @@ public class BaseController<M extends IService<T>,T> {
     }
 
     @DeleteMapping("/{ids}")
-    @ApiOperation(value = "根据ID删除实体", httpMethod = "GET", notes = "根据ID删除实体")
-    public void delete(@ApiParam(name = "id", value = "实体ID", required = true)@PathVariable String ...ids) {
-        service.removeByIds(Arrays.asList(ids));
+    @ApiOperation(value = "根据ID删除实体", httpMethod = "DELETE", notes = "根据ID删除实体")
+    public BaseResponse<T> delete(@ApiParam(name = "ids", value = "实体ID集，用,分隔", required = true)@PathVariable String ...ids) {
+        if (service.removeByIds(Arrays.asList(ids))) {
+            throw new RuntimeException("删除失败");
+        }
+        return BaseResponse.SUCCESS("删除成功");
     }
 
     @PostMapping("/page")
     @ApiOperation(value = "根据分页条件获取实体列表", httpMethod = "POST", notes = "根据分页条件获取实体列表")
-    public Page<T> page(@ApiParam(name = "query", value = "查询对象", required = true) @RequestBody Query query) {
+    public Page<T> page(@ApiParam(name = "query", value = "查询对象", required = true) @RequestBody Query<T> query) {
         return service.page(query.getPage(), query.toWrapper());
     }
 

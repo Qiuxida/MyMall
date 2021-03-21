@@ -22,7 +22,6 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-//                .host("192.168.1.174:38383")
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.star.mall.controller"))
@@ -33,9 +32,9 @@ public class SwaggerConfig {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 //标题
-                .title("我的API文档")
+                .title("商城API文档")
                 //描述
-                .description("我的测试接口文档")
+                .description("商城接口文档")
                 //版本号
                 .version("1.0")
                 .build();

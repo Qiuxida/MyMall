@@ -8,6 +8,7 @@ import java.util.List;
 import com.star.mall.base.model.BaseModel;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.star.mall.base.model.Tree;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,54 +28,56 @@ public class Menu extends BaseModel implements Tree {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
-     */
-    @TableId("ID_")
-    private String id;
-
-    /**
-     * 别名
+     * 菜单别名
      */
     @TableField("ALIAS_")
+    @ApiModelProperty(value = "商品别名", required = true)
     private String alias;
 
     /**
-     * 名称
+     * 菜单名称
      */
     @TableField("NAME_")
+    @ApiModelProperty(value = "商品名称", required = true)
     private String name;
 
     /**
-     * 上级ID
+     * 上级菜单ID
      */
     @TableField("PARENT_ID_")
+    @ApiModelProperty(value = "上级菜单ID", required = true)
     private String parentId;
 
     /**
      * 上下级路径
      */
     @TableField("PATH_")
+    @ApiModelProperty(value = "上下级路径")
     private String path;
 
     /**
      * 链接
      */
     @TableField("HREF_")
+    @ApiModelProperty(value = "链接")
     private String href;
 
     /**
      * 图标
      */
     @TableField("ICON_")
+    @ApiModelProperty(value = "图标")
     private String icon;
 
     /**
      * 是否启用
      */
     @TableField("ENABLED_")
+    @ApiModelProperty(value = "是否启用")
     private Integer enabled;
 
     @TableField(exist = false)
+    @ApiModelProperty(value = "子菜单")
     private List<Menu> children;
 
 
