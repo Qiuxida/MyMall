@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/mall/v1")
 public class AuthController {
 
     @Resource
     AuthService authService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public BaseResponse auth(@RequestBody UserDetail userDetail){
         String token = authService.login(userDetail.getUsername(), userDetail.getPassword());
         if (StrUtil.isEmpty(token)) {
