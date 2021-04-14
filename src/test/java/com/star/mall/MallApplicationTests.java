@@ -47,28 +47,28 @@ class MallApplicationTests {
     RestHighLevelClient restHighLevelClient;
 
     @Test
-    public void testCreateIndex() throws IOException {
+    public void createIndex() throws IOException {
         CreateIndexRequest request = new CreateIndexRequest("kuang_index");
         CreateIndexResponse response = restHighLevelClient.indices().create(request, RequestOptions.DEFAULT);
         System.out.println(response);
     }
 
     @Test
-    public void testExistIndex() throws IOException {
+    public void existIndex() throws IOException {
         GetIndexRequest request = new GetIndexRequest("kuang_index");
         boolean exists = restHighLevelClient.indices().exists(request, RequestOptions.DEFAULT);
         System.out.println(exists);
     }
 
     @Test
-    public void testDeleteIndex() throws IOException {
+    public void deleteIndex() throws IOException {
         DeleteIndexRequest request = new DeleteIndexRequest("kuang_index");
         AcknowledgedResponse response = restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);
         System.out.println(response.isAcknowledged());
     }
 
     @Test
-    public void testCreateDocument() throws IOException {
+    public void createDocument() throws IOException {
         User user = new User();
         user.setId(UniqueIdUtil.getSid());
         user.setAccount("qiuxida");
@@ -81,7 +81,7 @@ class MallApplicationTests {
     }
 
     @Test
-    public void testExistDocument() throws IOException {
+    public void existDocument() throws IOException {
         GetRequest request = new GetRequest("kuang_index", "1");
         request.fetchSourceContext(new FetchSourceContext(false));
         boolean exists = restHighLevelClient.exists(request, RequestOptions.DEFAULT);
@@ -89,7 +89,7 @@ class MallApplicationTests {
     }
 
     @Test
-    public void testGetDocument() throws IOException {
+    public void getDocument() throws IOException {
         GetRequest request = new GetRequest("kuang_index", "1");
         GetResponse response = restHighLevelClient.get(request, RequestOptions.DEFAULT);
         System.out.println(response.getSourceAsString());
@@ -97,7 +97,7 @@ class MallApplicationTests {
     }
 
     @Test
-    public void testUpdateDocument() throws IOException {
+    public void updateDocument() throws IOException {
         UpdateRequest request = new UpdateRequest("kuang_index", "1");
         User user = new User();
         user.setAccount("admin1");
@@ -107,14 +107,14 @@ class MallApplicationTests {
     }
 
     @Test
-    public void testDeleteDocument() throws IOException {
+    public void deleteDocument() throws IOException {
         DeleteRequest request = new DeleteRequest("kuang_index", "1");
         DeleteResponse response = restHighLevelClient.delete(request, RequestOptions.DEFAULT);
         System.out.println(response.status());
     }
 
     @Test
-    public void testBulkDocument() throws IOException {
+    public void bulkDocument() throws IOException {
         BulkRequest request = new BulkRequest();
         List<User> users = new ArrayList<>();
 
@@ -127,7 +127,7 @@ class MallApplicationTests {
     }
 
     @Test
-    public void testSearch() throws IOException {
+    public void search() throws IOException {
         SearchRequest request = new SearchRequest("kuang_index");
 
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();

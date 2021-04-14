@@ -17,4 +17,6 @@ public interface IUserService extends IService<User> {
     IPage<User> queryRoleUsers(Query query);
 
     IPage<User> queryOrgUsers(Query query);
+
+    User getByUsername(String username);
 }

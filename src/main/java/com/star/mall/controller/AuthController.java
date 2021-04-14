@@ -1,5 +1,6 @@
 package com.star.mall.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.star.mall.base.response.BaseResponse;
 import com.star.mall.base.response.ResponseCode;
 import com.star.mall.model.UserDetail;
@@ -10,19 +11,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("/api/v1")
 public class AuthController {
 
-    @Autowired
+    @Resource
     AuthService authService;
 
-    @PostMapping("auth")
+    @PostMapping("login")
     public BaseResponse auth(@RequestBody UserDetail userDetail){
-        String token = null;
-        if (token == null) {
+        String token = authService.login(userDetail.getUsername(), userDetail.getPassword());
+        if (StrUtil.isEmpty(token)) {
             return new BaseResponse<String>(ResponseCode.VALIDATE_ERROR,"认证失败",null);
         }
-        return new BaseResponse<String>(ResponseCode.SUCCESS,"认证成功", token);
+        return new BaseResponse<>(ResponseCode.SUCCESS,"认证成功", token);
     }
 }

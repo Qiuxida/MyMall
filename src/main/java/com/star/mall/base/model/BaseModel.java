@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 public class BaseModel implements Serializable {
     private static final long serialVersionUID = 3699259628684168681L;
 
-    @TableField("id_")
+    @TableId(value = "id_")
     @ApiModelProperty("实体ID")
     private String id;
     @TableField(value = "created_by_")

@@ -1,5 +1,6 @@
 package com.star.mall.persistence.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.star.mall.base.query.Query;
@@ -28,5 +29,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public IPage<User> queryOrgUsers(Query query) {
         return baseMapper.queryOrgUsers(query.getPage(), query.toWrapper());
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("account_", username);
+        return baseMapper.selectOne(wrapper);
     }
 }
