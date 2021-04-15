@@ -8,7 +8,7 @@ spring:
     username: root
     password: Abc123
   redis:
-    host: localhost
+    host: 8.135.0.233
     port: 6379
     database: 0
     password:
@@ -45,7 +45,7 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 jwt:
-  secret: secret
+  secret: LJBz67RkRq6JeEsRCOd7j1qIINqbuMwutkIYaZdK8lxNRk0218vedNY7UFNtwGNt
   expiration: 3600
 
 mybatis-plus:

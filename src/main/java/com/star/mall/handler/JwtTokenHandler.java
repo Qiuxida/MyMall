@@ -4,16 +4,16 @@ import com.star.mall.model.UserDetail;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class JwtTokenHandler {
@@ -24,8 +24,6 @@ public class JwtTokenHandler {
     private String secret;
     @Value("${jwt.expiration}")
     private Long expiration;
-
-    private Map<String,String> tokenMap = new ConcurrentHashMap<>();
 
     public UserDetail getUserByToken(String token){
         UserDetail userDetail = new UserDetail();
@@ -38,10 +36,6 @@ public class JwtTokenHandler {
     public String getUsernameByToken(String token){
         Claims claims = getClaimsFromToken(token);
         return claims.getSubject();
-    }
-
-    public boolean containToken(String username, String token){
-        return (username!=null && tokenMap.containsKey(username) && tokenMap.get(username).equals(token));
     }
 
     public boolean validateToken(String token){
@@ -59,28 +53,36 @@ public class JwtTokenHandler {
     }
 
     private Claims getClaimsFromToken(String token){
-        Claims claims = null;
-        try {
-            claims = Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (Exception e) {
-            logger.info("JWT格式验证失败:{}", token);
-        }
-        return claims;
+//        Claims claims = null;
+//        try {
+//            claims = Jwts.parserBuilder()
+//                    .setSigningKey(secret)
+//                    .build()
+//                    .parseClaimsJws(token)
+//                    .getBody();
+//        } catch (Exception e) {
+//            logger.info("JWT格式验证失败:{}", token);
+//        }
+        return Jwts.parserBuilder()
+                .setSigningKey(secret)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public String generateAccessToken(UserDetails userDetails) {
         Date createDate = new Date();
         Date expireDate = new Date(createDate.getTime() + expiration * 1000);
 
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        Key key = Keys.hmacShaKeyFor(keyBytes);
+
         return Jwts
                 .builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, secret)
+                .signWith(key)
                 .compact();
     }
 }
