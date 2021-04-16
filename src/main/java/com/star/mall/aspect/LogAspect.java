@@ -2,7 +2,7 @@ package com.star.mall.aspect;
 
 import cn.hutool.json.JSONUtil;
 import com.star.mall.persistence.entity.OperationLog;
-import com.star.mall.utils.HttpUtil;
+import com.star.mall.utils.IPUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
@@ -20,7 +20,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
+import java.util.Map;
 
 /**
  * 日志切面实现类
@@ -51,7 +51,9 @@ public class LogAspect {
         ApiOperation operation = method.getAnnotation(ApiOperation.class);
 
         OperationLog log = new OperationLog();
-        log.setIp(HttpUtil.getIpAddress(request));
+        Map<String, String> map = IPUtil.getIpPosition(request);
+        log.setIp(map.get("ip"));
+        log.setPosition(map.get("position"));
         log.setNote(operation.notes());
         log.setType(operation.httpMethod());
         log.setUrl(request.getRequestURI());

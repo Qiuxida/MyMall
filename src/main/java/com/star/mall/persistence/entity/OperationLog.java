@@ -68,4 +68,8 @@ public class OperationLog extends BaseModel {
     @ApiModelProperty(value = "IP地址")
     private String ip;
 
+    @TableField("POSITION_")
+    @ApiModelProperty(value = "IP所属区域")
+    private String position;
+
 }
