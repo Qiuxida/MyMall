@@ -11,7 +11,7 @@ spring:
     host: 8.135.0.233
     port: 6379
     database: 0
-    password:
+    password: Abc123
   kafka:
     bootstrap-servers: 8.135.0.233:9092
     producer:

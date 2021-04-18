@@ -1,16 +1,14 @@
 package com.star.mall.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.GetMethod;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +22,19 @@ import java.util.Map;
 public class IPUtil {
     public static final String IP_ADDRESS = "ipAddress";
 
-    private static RedisTemplate redisTemplate;
+    private static RedisTemplate<String,String> redisTemplate;
+
+    private static RestTemplate restTemplate;
+
     //静态变量通过set方法进行注入
     @Autowired
-    public void setRedisTemplate(RedisTemplate redisTemplate) {
+    public void setRedisTemplate(RedisTemplate<String, String> redisTemplate) {
         IPUtil.redisTemplate = redisTemplate;
+    }
+
+    @Autowired
+    public void setRestTemplate(RestTemplate restTemplate) {
+        IPUtil.restTemplate = restTemplate;
     }
 
     /**
@@ -77,15 +83,15 @@ public class IPUtil {
      * @return
      */
     public static Map<String, String> getIpPosition(String ip) {
-        if (StringUtil.isEmpty(ip)) {
+        if (StringUtils.isEmpty(ip)) {
             return null;
         }
         Map<String, String> map = new HashMap<>();
         map.put("ip", ip);
         //省份
-        String position = (String)redisTemplate.opsForHash().get(IP_ADDRESS, ip);
+        String position = (String) redisTemplate.opsForHash().get(IP_ADDRESS, ip);
 
-        if(!StringUtil.isEmpty(position)){
+        if(!StringUtils.isEmpty(position)){
             map.put("position", position);
             return map;
         }
@@ -93,38 +99,19 @@ public class IPUtil {
         // 126 ip API
         String path = "http://ip.ws.126.net/ipquery?ip=" + ip;
 
-        HttpClient httpClient = new HttpClient();
-        // 设置超时时间
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(5000);
-        // get请求
-        GetMethod getMethod = new GetMethod(path);
+        // 获取返回内容
+        // 读取内容
+        String response = restTemplate.getForObject(path, String.class);
+        // 处理内容
+        // 获取数据内容
+        response = response.substring(response.lastIndexOf("=") + 1, response.length());
 
-        try {
-            int statusCode = httpClient.executeMethod(getMethod);
-            if (statusCode != 200) {
-                return map;
-            }
-            // 获取返回内容
-            // 读取内容
-            String str = getMethod.getResponseBodyAsString();
-            // 处理内容
-            // 获取数据内容
-            str = str.substring(str.lastIndexOf("=") + 1, str.length());
-
-            JSONObject jo = JSON.parseObject(str);
-            position = jo.getString("province") + jo.getString("city");
-            map.put("position", position);
-            map.put("ip", ip);
-            //存入redis中
-            redisTemplate.opsForHash().put(IP_ADDRESS, ip, position);
-
-            return map;
-        } catch (HttpException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JSONObject jo = JSONUtil.parseObj(response);
+        position = jo.getStr("province") + jo.getStr("city");
+        map.put("position", position);
+        map.put("ip", ip);
+        //存入redis中
+        redisTemplate.opsForHash().put(IP_ADDRESS, ip, position);
         return map;
     }
 }
